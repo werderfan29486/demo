@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /Kundenverwaltung
+
+spring:
+  main:
+    banner-mode: "off"
+  jpa:
+    database: MYSQL
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: update
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/KUNDEN?autoreconnect=true"
+    username: "root"
+    password: "example"
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1
+    max-active: 15
+    max-idle: 10
+    max-wait: 8000
+
+logging:
+  level:
+    org:
+      springframework: ERROR
