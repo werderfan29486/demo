@@ -7,6 +7,7 @@ import com.schwarck.kundenverwaltung.database.DateRepository;
 import com.schwarck.kundenverwaltung.exceptions.CustomerDoesNotExistException;
 import com.schwarck.kundenverwaltung.exceptions.DateDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,20 +17,16 @@ import java.util.logging.Logger;
 @Component
 public class DateService {
 
-    @Autowired
-    DateRepository dateRepository;
+    private final DateRepository dateRepository;
+    private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    CustomerService customerService;
-
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    DateService dateService;
-
-    @Autowired
-    public DateService(DateRepository dateRepository) {this.dateRepository = dateRepository; }
+    public DateService(DateRepository dateRepository, CustomerService customerService, CustomerRepository customerRepository) {
+        this.dateRepository = dateRepository;
+        this.customerService = customerService;
+        this.customerRepository = customerRepository;
+    }
 
     Logger logger = Logger.getLogger("");
 
@@ -75,7 +72,7 @@ public class DateService {
                 customerRepository.findById(customerId).orElseThrow(CustomerDoesNotExistException::new);
                 dateRepository.findById(dateId).orElseThrow(DateDoesNotExistException::new);
                 dateRepository.deleteById(dateId);
-                dateService.addDate(customerId, newDate);
+                addDate(customerId, newDate);
             }
 
             catch (CustomerDoesNotExistException | DateDoesNotExistException e) {

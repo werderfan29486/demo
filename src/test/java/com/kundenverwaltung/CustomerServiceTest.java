@@ -48,8 +48,8 @@ public class CustomerServiceTest {
 
     @Test
     public void updateCustomerNameTest() {
-        customerService.updateCustomer(3, "Gantzert", "Schwarck");
-        Customer customer = customerService.findCustomer(3);
+        customerService.updateCustomer(1, "Gantzert", "Schwarck");
+        Customer customer = customerService.findCustomer(1);
         Assertions.assertEquals(customer.getName(), "Schwarck");
     }
 

@@ -4,6 +4,7 @@ import com.schwarck.kundenverwaltung.database.*;
 import com.schwarck.kundenverwaltung.exceptions.BillDoesNotExistException;
 import com.schwarck.kundenverwaltung.exceptions.CustomerDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +13,18 @@ import java.util.logging.Logger;
 @Component
 public class BillService {
 
-    @Autowired
-    BillRepository billRepository;
+    private final BillRepository billRepository;
+    private final CustomerRepository customerRepository;
+    private final DateRepository dateRepository;
+    private final DateService dateService;
 
     @Autowired
-    CustomerService customerService;
-
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    DateRepository dateRepository;
-
-    @Autowired
-    DateService dateService;
+    public BillService(BillRepository billRepository, CustomerRepository customerRepository, DateRepository dateRepository, DateService dateService) {
+        this.billRepository = billRepository;
+        this.customerRepository = customerRepository;
+        this.dateRepository = dateRepository;
+        this.dateService = dateService;
+    }
 
     Bill bill1 = new Bill();
     Logger logger = Logger.getLogger("");
@@ -35,7 +34,9 @@ public class BillService {
             billRepository.findById(billId).orElseThrow(BillDoesNotExistException::new);
             customerRepository.findById(customerId).orElseThrow(CustomerDoesNotExistException::new);
             dateRepository.deleteAllByCustomerId(customerId);
-            billRepository.findById(billId).get().setPayed(true);
+            Bill bill = billRepository.findById(billId).get();
+            bill.setPayed(true);
+            billRepository.save(bill);
         }
         catch (BillDoesNotExistException | CustomerDoesNotExistException e) {
             logger.warning("Rechnung konnte nicht gefunden werden");

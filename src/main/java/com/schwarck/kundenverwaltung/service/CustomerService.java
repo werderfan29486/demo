@@ -6,6 +6,7 @@ import com.schwarck.kundenverwaltung.exceptions.CustomerDoesNotExistException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @Component
 public class CustomerService implements ICustomerService {
 
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
     Logger logger = LoggerFactory.getLogger("");
 
     @Autowired
@@ -58,6 +59,7 @@ public class CustomerService implements ICustomerService {
             } else if (customer.getPhoneNumber().equals(oldValue)) {
                 customer.setPhoneNumber(newValue);
             }
+            customerRepository.save(customer);
         } catch (CustomerDoesNotExistException e) {
             logger.warn("Updatevorgang nicht möglich");
         }

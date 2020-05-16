@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8181
   servlet:
     context-path: /Kundenverwaltung
 
@@ -11,6 +11,8 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MySQL5Dialect
       ddl-auto: update
+  thymeleaf:
+    spring.thymeleaf.cache = false;
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -30,3 +32,4 @@ logging:
   level:
     org:
       springframework: ERROR
+
