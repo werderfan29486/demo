@@ -1,29 +1,121 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html ng-app="appname" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spring Boot Thymeleaf Hello World Example</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" type="text/css"
-          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-
-    <link rel="stylesheet" th:href="@{/css/main.css}"
-          href="../../css/main.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="js/bootstrap.min.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/app/app.css" type="text/css"/>
+    <link rel="stylesheet" href="css/app/app2.css" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
 
 </head>
 <body>
 
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a id="startseite" class="navbar-brand" href="#">Startseite</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a id="kunden" class="nav-link" href="#">Kunden</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Termine</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Rechnungen</a>
+            </li>
+        </ul>
+        <div class="page-header">
+            <div class="pull-right">
+                <h3 style="color:white;" class="text-right">Kundenverwaltung 1.0</h3>
+            </div>
+    </div>
+    </div>
+</nav>
 
-    <div class="starter-template">
-        <h1>Spring Boot Web Thymeleaf Example</h1>
-        <h2>
-            <span th:text="'Message: ' + ${customers}"></span>
-        </h2>
+<table class="table table-responsive-sm table-sm table-striped table-hover table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Straße</th>
+        <th scope="col">Hausnummer</th>
+        <th scope="col">Postleitzahl</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefonnummer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+
+        <td><span th:text="${customer.name}"> Name </span></td>
+        <td><span th:text="${customer.firstName}"> Vorname </span></td>
+        <td><span th:text="${customer.street}"> Straße </span></td>
+        <td><span th:text="${customer.houseNumber}"> Hausnummer </span></td>
+        <td><span th:text="${customer.postalCode}"> Postleitzahl </span></td>
+        <td><span th:text="${customer.eMail}"> Email </span></td>
+        <td><span th:text="${customer.phoneNumber}"> Telefonnummer </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<button type="button" id="formButton" class="btn btn-dark btn-sm">Kunden hinzufügen</button>
+<button type="button" class="btn btn-dark btn-sm">Kunden löschen</button>
+<button type="button" class="btn btn-dark btn-sm">Kunden updaten</button>
+
+<p></p>
+
+<form id="form1" action="#" th:action="@{/customers}" th:object="${customer}", method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Name" th:field="*{name}" id="name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Vorname" th:field="*{firstName}" id="firstName">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Straße" th:field="*{street}" id="street">
+            <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Hausnummer" th:field="*{houseNumber}" id="houseNumber">
+            <span th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Postleitzahl" th:field="*{postalCode}" id="postalCode">
+            <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Email" th:field="*{eMail}" id="eMail">
+            <span th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Telefonnummer" th:field="*{phoneNumber}" id="phoneNumber">
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" ></span>
+        </div>
     </div>
 
-</div>
-<!--/.container -->
+<!--<div ng-controller="TodoCtrl">
+    {{totalTodos}}
+</div>-->
+
+<script type="text/javascript">
+    linkStartPage();
+    linkCustomerPage();
+    toggleButton();
+  </script>
+
+
+
 
 <script type="text/javascript"
         src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>

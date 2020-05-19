@@ -3,6 +3,7 @@ package com.schwarck.kundenverwaltung.database;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,25 +24,32 @@ public class Customer implements Serializable {
     private String customerNumber;
 
     @Column(name = "Name")
+    @NotBlank(message = "Name is required")
     private String name;
 
     @Column(name = "Vorname")
+    @NotBlank(message = "Name is required")
     private String firstName;
 
     @Column(name = "Straße")
+    @NotBlank(message = "Name is required")
     private String street;
 
     @Column(name = "Hausnummer")
+    @NotBlank(message = "Name is required")
     private String houseNumber;
 
     @Column(name = "Postleitzahl")
+    @NotBlank(message = "Name is required")
     private String postalCode;
     private static int count = 0;
 
     @Column(name = "phoneNumber")
+    @NotBlank(message = "Name is required")
     private String phoneNumber;
 
     @Column(name = "EMail")
+    @NotBlank(message = "Name is required")
     private String eMail;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

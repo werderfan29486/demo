@@ -3,8 +3,6 @@ package com.schwarck.kundenverwaltung.api;
 import com.schwarck.kundenverwaltung.database.Customer;
 import com.schwarck.kundenverwaltung.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,20 +1,53 @@
-<!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="js/bootstrap.min.js"/>
+    <link rel="stylesheet" href="css/app/app.css"/>
+
+
+</head>
 <body>
 
-<h1>KUNDENVERWALTUNG 1.0 BY ALEX SCHWARCK</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a id="startseite" class="navbar-brand" href="#">Startseite</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a id="kunden" class="nav-link" href="#">Kunden</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Termine</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Rechnungen</a>
+            </li>
+        </ul>
+        <div class="page-header">
+            <div class="pull-right">
+                <h3 style="color:white;" class="text-right">Kundenverwaltung 1.0</h3>
+            </div>
+        </div>
+</nav>
 
-<button onclick="myFunction()">Kundenliste</button></body></br>
-<p id="demo"></p>
-<button onclick="myFunction()">Termine</button></html></br>
-<p></p>
-<button onclick="myFunction()">Rechnungen</button>
-<p></p>
-<script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
-}
+<script type="text/javascript">
+    document.getElementById("startseite").onclick = function () {
+        location.href = "http://localhost:8181/Kundenverwaltung/index";
+    };
 </script>
+
+<script type="text/javascript">
+    document.getElementById("kunden").onclick = function () {
+        location.href = "http://localhost:8181/Kundenverwaltung/customers";
+    };
+</script>
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>
