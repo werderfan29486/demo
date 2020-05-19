@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="appname" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="js/bootstrap.min.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/app/app.css" type="text/css"/>
+    <link rel="stylesheet" href="css/app/app2.css" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
+</head>
+<body>
+<button type="button" id="formButton" class="btn btn-dark btn-sm">Kunden hinzufügen</button>
+<form id="form1" action="#" th:action="@{/customeradd}" th:object="${customer}", method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Name" th:field="*{name}" id="name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Vorname" th:field="*{firstName}" id="firstName">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Straße" th:field="*{street}" id="street">
+            <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Hausnummer" th:field="*{houseNumber}" id="houseNumber">
+            <span th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Postleitzahl" th:field="*{postalCode}" id="postalCode">
+            <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Email" th:field="*{eMail}" id="eMail">
+            <span th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}" ></span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Telefonnummer" th:field="*{phoneNumber}" id="phoneNumber">
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" ></span>
+        </div>
+    </div>
+    <p></p>
+    <input type="submit" id="submit" class="btn btn-dark btn-sm">Bestätigen</input>
+</form>
+<script type="text/javascript">
+    toggleButton();
+  </script>
+</body>
+</html>
