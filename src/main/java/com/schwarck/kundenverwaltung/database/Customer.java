@@ -22,35 +22,28 @@ public class Customer implements Serializable {
 
     @Column(name = "Customernumber")
     private String customerNumber;
+    private static int count = 0;
 
     @Column(name = "Name")
-    @NotBlank(message = "Name is required")
     private String name;
 
     @Column(name = "Vorname")
-    @NotBlank(message = "Name is required")
     private String firstName;
 
     @Column(name = "Straße")
-    @NotBlank(message = "Name is required")
     private String street;
 
     @Column(name = "Hausnummer")
-    @NotBlank(message = "Name is required")
     private String houseNumber;
 
     @Column(name = "Postleitzahl")
-    @NotBlank(message = "Name is required")
     private String postalCode;
-    private static int count = 0;
-
-    @Column(name = "phoneNumber")
-    @NotBlank(message = "Name is required")
-    private String phoneNumber;
 
     @Column(name = "EMail")
-    @NotBlank(message = "Name is required")
     private String eMail;
+
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Date> dates = new ArrayList<>();
@@ -59,9 +52,11 @@ public class Customer implements Serializable {
     private List<Bill> bills = new ArrayList<>();
 
     public Customer() {
+        ++count;
+        this.customerNumber = String.format("%04d", count);
     }
 
-    public Customer(String name, String firstName, String street, String houseNumber, String postalCode, String phoneNumber, String eMail) {
+    public Customer(String name, String firstName, String street, String houseNumber, String postalCode, String eMail, String phoneNumber) {
         ++count;
         this.customerNumber = String.format("%04d", count);
         this.name = name;
@@ -69,12 +64,8 @@ public class Customer implements Serializable {
         this.street = street;
         this.houseNumber = houseNumber;
         this.postalCode = postalCode;
-        this.phoneNumber = phoneNumber;
         this.eMail = eMail;
-    }
-
-    private String rightPad(String text, int length) {
-        return String.format("%-" + length + "." + length + "s", text);
+        this.phoneNumber = phoneNumber;
     }
 
     public void setName(String name) {
@@ -149,13 +140,13 @@ public class Customer implements Serializable {
                 Objects.equals(street, customer.street) &&
                 Objects.equals(houseNumber, customer.houseNumber) &&
                 Objects.equals(postalCode, customer.postalCode) &&
-                Objects.equals(phoneNumber, customer.phoneNumber) &&
-                Objects.equals(eMail, customer.eMail);
+                Objects.equals(eMail, customer.eMail) &&
+                Objects.equals(phoneNumber, customer.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customerNumber, name, firstName, street, houseNumber, postalCode, phoneNumber, eMail);
+        return Objects.hash(id, customerNumber, name, firstName, street, houseNumber, postalCode, eMail, phoneNumber);
     }
 
     @Override
@@ -168,8 +159,8 @@ public class Customer implements Serializable {
                 ", street='" + street + '\'' +
                 ", houseNumber='" + houseNumber + '\'' +
                 ", postalCode='" + postalCode + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", phoneNumber='" + eMail + '\'' +
+                ", eMail='" + phoneNumber + '\'' +
                 '}';
     }
 

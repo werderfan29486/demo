@@ -1,0 +1,58 @@
+<h3>Kunden hinzufügen</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form (ngSubmit)="onSubmit()">
+
+
+        <div class="form-group">
+          <label for="name">Name</label>
+         <input type="text" class="form-control"  id="name" required [(ngModel)]="customer.name" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">Vorname</label>
+          <input type="text" class="form-control"  id="firstName" required [(ngModel)]="customer.firstName" name="firstName">
+          </div>
+
+        <div class="form-group">
+          <label for="street">Straße</label>
+          <input type="text" class="form-control"  id="street" required [(ngModel)]="customer.street" name="street">
+        </div>
+
+        <div class="form-group">
+          <label for="houseNumber">Hausnummer</label>
+          <input type="text" class="form-control"  id="houseNumber" required [(ngModel)]="customer.houseNumber" name="houseNumber">
+        </div>
+
+        <div class="form-group">
+          <label for="postalCode">Postleitzahl</label>
+          <input type="text" class="form-control"  id="postalCode" required [(ngModel)]="customer.postalCode" name="postalCode">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control"  id="eMail" required [(ngModel)]="customer.eMail" name="eMail">
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Telefonnummer</label>
+          <input type="text" class="form-control"  id="phoneNumber" required [(ngModel)]="customer.phoneNumber" name="phoneNumber">
+        </div>
+        <button type="submit" class="btn btn-success">Kunde hinzufügen</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div [hidden]="!submitted">
+      <h4>Kunde erfolgreich hinzugefügt</h4>
+      <button (click)="newCustomer()" class='btn btn-primary'>Weitere Kunden hinzufügen</button>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

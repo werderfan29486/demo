@@ -16,44 +16,47 @@
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/javascript.js"></script>
 </head>
+
 <body>
-<button type="button" id="formButton" class="btn btn-dark btn-sm">Kunden hinzufügen</button>
-<form id="form1" action="#" th:action="@{/customeradd}" th:object="${customer}", method="post">
-    <div class="row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Name" th:field="*{name}" id="name">
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Vorname" th:field="*{firstName}" id="firstName">
-            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Straße" th:field="*{street}" id="street">
-            <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Hausnummer" th:field="*{houseNumber}" id="houseNumber">
-            <span th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Postleitzahl" th:field="*{postalCode}" id="postalCode">
-            <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Email" th:field="*{eMail}" id="eMail">
-            <span th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}" ></span>
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Telefonnummer" th:field="*{phoneNumber}" id="phoneNumber">
-            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" ></span>
-        </div>
-    </div>
-    <p></p>
-    <input type="submit" id="submit" class="btn btn-dark btn-sm">Bestätigen</input>
-</form>
-<script type="text/javascript">
-    toggleButton();
-  </script>
+<div align="center">
+    <h1>Kunden hinzufügen</h1>
+    <br />
+    <form action="#" th:action="@{/save}" th:object="${customer}" method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>Vorname</td>
+                <td><input type="text" th:field="*{firstName}" /></td>
+            </tr>
+            <tr>
+                <td>Straße</td>
+                <td><input type="text" th:field="*{street}" /></td>
+            </tr>
+            <tr>
+                <td>Hausnummer</td>
+                <td><input type="text" th:field="*{houseNumber}" /></td>
+            </tr>
+            <tr>
+                <td>Postleitzahl</td>
+                <td><input type="text" th:field="*{postalCode}" /></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" th:field="*{eMail}" /></td>
+            </tr>
+            <tr>
+                <td>Telefonnummer</td>
+                <td><input type="text" th:field="*{phoneNumber}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

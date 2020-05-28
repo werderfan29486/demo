@@ -20,8 +20,8 @@ public class CustomerServiceTest {
     @Autowired
     CustomerRepository customerRepository;
 
-    Customer customer1 = new Customer("Gantzert", "Sebastian", "Auf der Schmelz", "67", "64380", "0151/23456", "sega@sega.de");
-    Customer customer2 = new Customer("Weygandt", "Martin", "Egerländer", "44", "64380", "0151/62748294", "weygandt@martin.de");
+    Customer customer1 = new Customer("Gantzert", "Sebastian", "Auf der Schmelz", "67", "64380", "sega@sega.de", "0151/3829402");
+    Customer customer2 = new Customer("Weygandt", "Martin", "Egerländer", "44", "64380", "hallo@hallo.de", "92849234");
 
     @Test
     public void addCustomerTest() {

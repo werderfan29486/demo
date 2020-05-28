@@ -11,8 +11,7 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MySQL5Dialect
       ddl-auto: update
-  thymeleaf:
-    spring.thymeleaf.cache = false;
+
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
