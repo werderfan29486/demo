@@ -8,7 +8,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 const routes: Routes = [
   { path: 'customer-list', component: CustomerListComponent },
   { path: 'customer-add', component: CustomerAddComponent },
-  { path: 'customer-details', component: CustomerDetailsComponent}
+  { path: 'customer-details/:id', component: CustomerDetailsComponent}
 
   ];
 

@@ -64,8 +64,7 @@
           "options": {
             "browserTarget": "customerapp:build",
             "proxyConfig": "proxy.conf.json"
-          }
-          ,
+          },
           "configurations": {
             "production": {
               "browserTarget": "customerapp:build:production"
@@ -121,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "customerapp"
+    }
+  },
+  "defaultProject": "customerapp",
+  "cli": {
+    "analytics": "1ed01933-eded-4ea6-b563-1daaa5354f90"
+  }
 }

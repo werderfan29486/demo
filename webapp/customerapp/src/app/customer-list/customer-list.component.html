@@ -47,7 +47,7 @@
             <td>{{ customer.email }}</td>
             <td>{{ customer.phoneNumber }}</td>
             <td><button type="submit" (click)='deleteCustomer(customer.id)' class="btn btn-success">Löschen</button>&nbsp;&nbsp;
-              <button type="submit" routerLink = "/customer-details" (click)='findCustomerById(customer.id)' class="btn btn-success">Daten/Termine</button></td>
+              <button type="submit" [routerLink] = "['/customer-details/', customer.id]" routerLinkActive="active" (click)='findCustomerById(customer.id)' class="btn btn-success">Daten/Termine</button></td>
           </tr>
           <td></td>
           <td></td>

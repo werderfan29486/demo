@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../customer/customer';
 import { CustomerService } from '../customer/customer.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-customer-list',
@@ -25,8 +26,8 @@ export class CustomerListComponent implements OnInit {
     });
     }
 
-   findCustomerById(id: number) {
-      this.customerService.findCustomerById(id);
+   findCustomerById(id: number): Observable<any> {
+      return this.customerService.findCustomerById(id);
    }
 
    deleteCustomer(id: number) {
