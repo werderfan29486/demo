@@ -6,20 +6,23 @@ import { AppComponent } from './app.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
-    CustomerAddComponent
+    CustomerAddComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

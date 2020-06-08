@@ -1,13 +1,11 @@
 package com.schwarck.kundenverwaltung.database;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity(name = "customer")
 @Table(name = "customer")
@@ -22,7 +20,6 @@ public class Customer implements Serializable {
 
     @Column(name = "Customernumber")
     private String customerNumber;
-    private static int count = 0;
 
     @Column(name = "Name")
     private String name;
@@ -40,7 +37,7 @@ public class Customer implements Serializable {
     private String postalCode;
 
     @Column(name = "EMail")
-    private String eMail;
+    private String email;
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
@@ -52,19 +49,15 @@ public class Customer implements Serializable {
     private List<Bill> bills = new ArrayList<>();
 
     public Customer() {
-        ++count;
-        this.customerNumber = String.format("%04d", count);
     }
 
-    public Customer(String name, String firstName, String street, String houseNumber, String postalCode, String eMail, String phoneNumber) {
-        ++count;
-        this.customerNumber = String.format("%04d", count);
+    public Customer(String name, String firstName, String street, String houseNumber, String postalCode, String email, String phoneNumber) {
         this.name = name;
         this.firstName = firstName;
         this.street = street;
         this.houseNumber = houseNumber;
         this.postalCode = postalCode;
-        this.eMail = eMail;
+        this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
@@ -117,7 +110,11 @@ public class Customer implements Serializable {
         return phoneNumber;
     }
     public String getEMail() {
-        return eMail;
+        return email;
+    }
+
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -125,7 +122,7 @@ public class Customer implements Serializable {
     }
 
     public void setEmail(String eMail) {
-        this.eMail = eMail;
+        this.email = eMail;
     }
 
     @Override
@@ -140,13 +137,13 @@ public class Customer implements Serializable {
                 Objects.equals(street, customer.street) &&
                 Objects.equals(houseNumber, customer.houseNumber) &&
                 Objects.equals(postalCode, customer.postalCode) &&
-                Objects.equals(eMail, customer.eMail) &&
+                Objects.equals(email, customer.email) &&
                 Objects.equals(phoneNumber, customer.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customerNumber, name, firstName, street, houseNumber, postalCode, eMail, phoneNumber);
+        return Objects.hash(id, customerNumber, name, firstName, street, houseNumber, postalCode, email, phoneNumber);
     }
 
     @Override
@@ -159,7 +156,7 @@ public class Customer implements Serializable {
                 ", street='" + street + '\'' +
                 ", houseNumber='" + houseNumber + '\'' +
                 ", postalCode='" + postalCode + '\'' +
-                ", phoneNumber='" + eMail + '\'' +
+                ", phoneNumber='" + email + '\'' +
                 ", eMail='" + phoneNumber + '\'' +
                 '}';
     }

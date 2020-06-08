@@ -1,11 +1,11 @@
 export class Customer {
-    id: string;
+    id: number;
     customerNumber: string;
     name: string;
     firstName: string;
     street: string;
     houseNumber: string;
     postalCode: string;
-    eMail: string;
+    email: string;
     phoneNumber: string;
 }

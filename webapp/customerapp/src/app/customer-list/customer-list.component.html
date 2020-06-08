@@ -1,3 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card black my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">Kundenübersicht</h2>
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <a routerLink="customer-list" class="btn btn-success">Kundenliste</a>
+            </li>
+            <li class="list-inline-item">
+              <a routerLink="customer-add" class="btn btn-success">Kunden hinzufügen</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="card my-5">
     <div class="card-body">
       <table class="table table-bordered table-striped">
@@ -12,6 +32,7 @@
             <th scope="col">Postleitzahl</th>
             <th scope="col">Email</th>
             <th scope="col">Telefonnummer</th>
+            <th scope="col">Löschen/Updaten</th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +46,23 @@
             <td>{{ customer.postalCode }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.phoneNumber }}</td>
+            <td><button type="submit" (click)='deleteCustomer(customer.id)' class="btn btn-success">Löschen</button>&nbsp;&nbsp;
+              <button type="submit" routerLink = "/customer-details" (click)='findCustomerById(customer.id)' class="btn btn-success">Daten/Termine</button></td>
           </tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <div *ngIf="customers.length > 0">
+          <td><button type="submit" (click)='deleteAllCustomers()' class="btn btn-success">Alle löschen</button></td>
+          </div>
         </tbody>
       </table>
     </div>
   </div>
+<router-outlet></router-outlet>

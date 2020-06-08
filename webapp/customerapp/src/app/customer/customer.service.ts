@@ -16,13 +16,21 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.usersUrl);
    }
 
- /*  public addCustomer(customer: Customer) {
-    return this.http.post(this.usersUrl, customer);
-   }
- */
    public addCustomer(customer: Customer): Observable<any> {
-    return this.http.post(`${this.usersUrl}`+'add', customer);
+    return this.http.post(`${this.usersUrl}`, customer);
   }
+
+   public deleteCustomer(id: number): Observable<any> {
+      return this.http.delete(`${this.usersUrl}/${id}`);
+    }
+
+   public deleteAllCustomers(): Observable<any> {
+      return this.http.delete(this.usersUrl);
+   }
+
+   public findCustomerById(id: number): Observable<any> {
+      return this.http.get(`${this.usersUrl}/${id}`);
+   }
 
 
 

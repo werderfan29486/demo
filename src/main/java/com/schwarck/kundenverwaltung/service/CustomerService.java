@@ -22,8 +22,10 @@ public class CustomerService implements ICustomerService {
         this.customerRepository = customerRepository;
     }
 
+    @Transactional
     public void addCustomer(Customer customer) {
-        customerRepository.save(customer);
+        Long id = customerRepository.save(customer).getId();
+        customer.setCustomerNumber(String.format("%04d", id));
     }
 
     public void deleteCustomer(long id) {
