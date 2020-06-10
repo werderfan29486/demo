@@ -1,5 +1,7 @@
 package com.schwarck.kundenverwaltung.database;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;

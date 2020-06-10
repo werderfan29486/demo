@@ -32,6 +32,10 @@ export class CustomerService {
       return this.http.get(`${this.usersUrl}/${id}`);
    }
 
+   public updateName(id: number, value: any): Observable<any> {
+      return this.http.put(`${this.usersUrl}/${id}`, value);
+   }
+
 
 
 }

@@ -18,8 +18,8 @@
   </div>
 </div>
 
-<table class="table">
-  <thead>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
   <tr>
     <th scope="col"></th>
     <th scope="col"></th>
@@ -29,39 +29,58 @@
   <tbody>
   <tr>
     <th scope="row">Name</th>
-    <td>{{ customer.name }}</td>
-    <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
+    <td>{{ customer.name }} <div *ngIf="isShow" style="width: 400px;">
+      <form [formGroup]="newName" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-group">
+          <label for="name"></label>
+          <input type="text" placeholder="Bitte neuen Namen eingeben" class="form-control"
+                 formControlName="name"
+                 id="name"
+                 name="name"
+                 required [(ngModel)]="customer.name">
+          <div class="alert alert-danger" *ngIf="formSubmitAttempt">
+            <div *ngIf="newName.get('name').hasError('required')">
+              Bitte Namen eingeben!
+            </div>
+          </div>
+        </div>
+        <button type="submit" (click)="updateName()" class="btn btn-small">Änderung bestätigen</button>
+      </form>
+    </div></td>
+    <td><button type="submit" (click)="toggleDisplay()" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Vorname</th>
-    <td>Jacob</td>
+    <td>{{ customer.firstName }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Straße</th>
-    <td>Larry</td>
+    <td>{{ customer.street }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Hausnummer</th>
-    <td>Mark</td>
+    <td>{{ customer.houseNumber }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Postleitzahl</th>
-    <td>Mark</td>
+    <td>{{ customer.postalCode }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Email</th>
-    <td>Mark</td>
+    <td>{{ customer.email }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
   <tr>
     <th scope="row">Telefonnummer</th>
-    <td>Mark</td>
+    <td>{{ customer.phoneNumber }}</td>
     <td><button type="submit" routerLink = "/customer-details" class="btn btn-small">Update</button></td>
   </tr>
 
   </tbody>
 </table>
+

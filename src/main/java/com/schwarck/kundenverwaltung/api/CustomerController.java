@@ -24,6 +24,9 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
     @RequestMapping(value="/customers", method = RequestMethod.GET)
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
@@ -49,6 +52,11 @@ public class CustomerController {
     public List<Customer> deleteAllCustomers() {
         customerService.deleteAll();
         return customerService.getAllCustomers();
+    }
+
+    @PutMapping("/customers/{id}")
+    public void updateName(@PathVariable("id") long id, @RequestBody Customer customer) {
+        customerService.findCustomer(id).setName(customer.getName());
     }
 
 }
