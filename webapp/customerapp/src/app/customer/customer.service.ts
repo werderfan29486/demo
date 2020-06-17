@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Customer } from './customer';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class CustomerService {
@@ -32,8 +33,27 @@ export class CustomerService {
       return this.http.get(`${this.usersUrl}/${id}`);
    }
 
-   public updateName(id: number, value: any): Observable<any> {
-      return this.http.put(`${this.usersUrl}/${id}`, value);
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+   public updateName(id: number, value: Customer): Observable<any> {
+      console.log("updating to url: "+this.usersUrl)
+      //return this.http.put(`${this.usersUrl}/1`, value);
+      console.log("Updating user with id: "+value.id+"And new name: "+value.name)
+     return this.http.put<Customer>('http://localhost:8181/Kundenverwaltung/customers/1', value).pipe(catchError(catchError(this.handleError)));
    }
 
 

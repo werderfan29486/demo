@@ -3,6 +3,8 @@ package com.schwarck.kundenverwaltung.api;
 import com.schwarck.kundenverwaltung.database.Customer;
 import com.schwarck.kundenverwaltung.database.CustomerRepository;
 import com.schwarck.kundenverwaltung.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +22,8 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 public class CustomerController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     CustomerService customerService;
@@ -56,7 +60,10 @@ public class CustomerController {
 
     @PutMapping("/customers/{id}")
     public void updateName(@PathVariable("id") long id, @RequestBody Customer customer) {
-        customerService.findCustomer(id).setName(customer.getName());
+        LOGGER.info("Getting request for customer with value: "+customer.getName());
+        Customer updatedCustomer = customerService.findCustomer(id);
+        updatedCustomer.setName(customer.getName());
+        customerService.saveCustomer(updatedCustomer);
     }
 
 }

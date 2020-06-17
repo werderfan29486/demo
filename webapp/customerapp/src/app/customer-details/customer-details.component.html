@@ -35,9 +35,9 @@
         <div class="form-group">
           <label for="name"></label>
           <input type="text" placeholder="Bitte neuen Namen eingeben" class="form-control"
-                 formControlName="name"
+                 formControlName="aNewName"
                  id="name"
-                 name="name"
+                 name="test"
                  required [(ngModel)]="customer.name">
           <div class="alert alert-danger" *ngIf="formSubmitAttempt">
             <div *ngIf="newName.get('name').hasError('required')">
